@@ -1,0 +1,4 @@
+SQLAlchemy>=2.0
+PyMySQL>=1.1
+pytest>=8.0
+mysql-connector-python>=9.0  # nur falls du den anderen Treiber nutzt
