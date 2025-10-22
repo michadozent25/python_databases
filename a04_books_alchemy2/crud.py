@@ -40,3 +40,6 @@ class BookRepository:
             self.session.delete(book)
             self.session.commit()
         return book
+class AuthorRepository: # Optional
+    # erstmal eine methode
+    pass

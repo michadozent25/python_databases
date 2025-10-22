@@ -27,13 +27,7 @@ def session():# TODO Parameter
 def repo(session):
     return BookRepository(session)
 
-@pytest.fixture
-def sample_book(session, repo):
-    book = Book(isbn="1234567890123", title="Old Title", author="Old Author")
-    session.add(book)
-    session.commit()
-    session.refresh(book)
-    return book
+
 def test_update_book_success(repo, session, sample_book):
     # Arrange
     updated_data = Book(id=sample_book.id, isbn="9876543210000", title="New Title", author="New Author")
