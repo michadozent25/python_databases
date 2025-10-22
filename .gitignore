@@ -38,3 +38,5 @@ data/
 
 # Notebooks-Checkpoints
 .ipynb_checkpoints/
+
+sandbox/
