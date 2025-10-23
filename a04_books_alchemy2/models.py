@@ -6,14 +6,13 @@ import re
 
 class Book(Base):
     __tablename__ = "books"
-
     id = Column(Integer, primary_key=True, autoincrement=True)
     isbn = Column(String(13), nullable=False, unique=True)
     title = Column(String(100), nullable=False)
 
     # 1 Buch → viele Autoren
     #authors = relationship("Author", back_populates="book", cascade="all, delete-orphan")
-    authors: Mapped[list["Author"]] = relationship(
+    authors: Mapped[list["Author"]] = relationship( #neu ab alchemy 2.0
         back_populates="book", cascade="all, delete-orphan"
     )
     def __repr__(self):

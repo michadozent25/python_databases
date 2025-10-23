@@ -62,7 +62,7 @@ class AuthorRepository: # Optional
         """Verknüpft einen vorhandenen Autor mit einem vorhandenen Buch."""
         author = self.session.query(Author).filter(Author.id == author_id).first()
         book = self.session.query(Book).filter(Book.id == book_id).first()
-
+        
         if not author or not book:
             return None
 
