@@ -15,10 +15,10 @@ class Student(Base):
     __tablename__="students"
     id=Column(Integer, primary_key=True)
     name=Column(String(100))
-    courses= relationship('Course',secondary=student_course,back_populates='students', cascade="save-update" )# all, delete, 
+    courses= relationship('Course',secondary=student_course,back_populates='students', cascade="all" )# all, delete, 
 
 class Course(Base):
     __tablename__="courses"
     id=Column(Integer, primary_key=True)
     name=Column(String(100))
-    students= relationship('Student',secondary=student_course,back_populates='courses', cascade="save-update" )
+    students= relationship('Student',secondary=student_course,back_populates='courses', cascade="all" )
