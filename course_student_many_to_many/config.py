@@ -1,1 +1,1 @@
-DATABASE_URL="mysql+pymysql://root:@localhost:3306/db_python08"
+DATABASE_URL="mysql+pymysql://root:@localhost:3306/db_python09"

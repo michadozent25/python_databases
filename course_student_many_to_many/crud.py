@@ -13,7 +13,7 @@ class StudentRepository:
 class CourseRepository:
     def __init__(self,session):
         self.session =session
-    def add_courset(self,name:str):
+    def add_course(self,name:str):
         course = Course(name=name)
         self.session.add(course)
         self.session.commit()
