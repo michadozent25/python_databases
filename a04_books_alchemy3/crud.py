@@ -18,6 +18,7 @@ class BaseRepository(Generic[T]):
         return obj
     def list_all(self) -> list[T]:
         return list(self.session.scalars(select(self.model)))
+    # find_by_id, delete_by_id, 
 class BookRepository(BaseRepository[Book]):
     def __init__(self, session: Session):
         super().__init__(session, Book)
