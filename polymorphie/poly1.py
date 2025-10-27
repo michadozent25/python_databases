@@ -16,4 +16,4 @@ class ElectricCar(Car):
 cars = [PetrolCar(), ElectricCar()]
 
 for c in cars:
-    print(c.fill_up())
+    print(c.fill_up()) # Plymorphie -> dynamic bind 

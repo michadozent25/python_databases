@@ -1,6 +1,6 @@
 class Car:
 
-    def fill_up(self):
+    def fill_up(cls):
         raise NotImplementedError
 
 class PetrolCar(Car):
