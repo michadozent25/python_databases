@@ -5,6 +5,7 @@ import crud
 def main():
     # #
     #Base.metadata.drop_all(engine)  -> see alembic
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
     user = crud.create_user(session,User(name="Max",email="max@web.de"))
     
