@@ -1,5 +1,6 @@
-from models import Todo, User
+from model.models import Todo, User
 from sqlalchemy.orm import Session
+from security.pwd import verify_password
 
 
 class TodoRepository:
@@ -33,5 +34,9 @@ class UserRepository:
         self.session.commit()
         self.session.refresh(user)
         return user
-    # def find_all_users(self)->list[User]:
-    #     pass
+       # Methode zur Authentifizierung ->pip install passlib[bcrypt]
+    def authenticate(self, name: str, password: str) -> User | None:
+            user = self.session.query(User).filter(User.name == name).first()
+            if user and verify_password(password, user.password):
+                return user
+            return None

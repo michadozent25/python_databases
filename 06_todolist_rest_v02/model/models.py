@@ -1,7 +1,8 @@
-#TODO generic __repr__
+
 from sqlalchemy import Column, Integer, String, Text, Date, Enum, ForeignKey
 from sqlalchemy.orm import relationship
-from database import Base
+from database.db_session import Base
+from model.enums import TodoState
 
 
 class BaseRepr:
@@ -22,7 +23,7 @@ class Todo(Base, BaseRepr):
     task=Column(String(100),nullable=False)
     description=Column(Text)
     deadline=Column(Date)
-    state= Column(Enum("OPEN","IN_PROGRESS","DONE"),nullable=False,default="OPEN")
+    state= Column(Enum(TodoState),nullable=False,default="OPEN")
     #  user_id,  evtl. user
 
     user_id=Column(Integer, ForeignKey("users.id"),nullable=False)
