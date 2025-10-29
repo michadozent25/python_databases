@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from enum import  Enum
 app= FastAPI() #später router = APIRouter()
-
+class TodoState(Enum):
+    OPEN="OPEN"
+    IN_PROGRESS="IN_PROGRESS"
+    DONE ="DONE"
 ## Schema Definition für Items
 class Item(BaseModel):
     name:str
@@ -22,6 +26,8 @@ def get_item(item_id:int, q:str):
 
 @app.post("/items")
 def creat_item(item:Item):
+
+    # save to crud
     return {"message":"Item erhalten","item":item}
 
 
