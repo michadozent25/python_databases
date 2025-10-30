@@ -60,12 +60,25 @@ def welcome():
     #http://127.0.0.1:8000/users/2/todos
     response = requests.get(f"{BASE_URL}/users/{user_id}/todos")
     #response.raise_for_status()
-    if requests.status_codes==200:
-       pass
+    if response.status_code==200:
+        todos = response.json()
+        if todos:
+            st.table(todos)   # alternative import pandas as pd ->pd.DataFrame(todo) 
+        else:
+            st.info("Keine Todos!")
+    else:
+            st.error(f"Fehler: {response.status_code}")
 
-    ## st.table
 
+def logout():
+    st.session_state['logged_in']=False
+    st.session_state.pop("user",None)
+    st.success("Erfolgreich abgemeldet!")
+    st.rerun()
 
+if st.session_state.get('logged_in'):
+    if st.button("Logout"):
+        logout()
 
 def main():
     if "logged_in" not in st.session_state:
