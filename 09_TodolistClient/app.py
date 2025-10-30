@@ -30,6 +30,42 @@ def welcome():
     user = st.session_state.get('user')
     st.title(f"Wilkommen, {user['name']}")
 
+    user_id= user["id"]
+    st.write('Du bist jetzt eingeloggt.')
+    st.title("Neues Todo")
+
+    task = st.text_input("Task")
+    description = st.text_input("Description")
+    deadline = st.date_input("Deadline")
+    state = st.selectbox("State",["OPEN","IN_PROGRESS","DONE"])
+
+    json_param={
+        "task":task,
+        "description":description,
+        "deadline":deadline.isoformat(),
+        "state":state
+    }
+    # http://127.0.0.1:8000/todos/?user_id=1
+
+    if st.button("Todo erstellen"):
+        response = requests.post(f"{BASE_URL}/todos/",json=json_param,params={"user_id":user_id})
+        if response.status_code==200:
+            st.success("Todo gespeichert!")
+            st.json(response.json())
+        else:
+            st.error(f"Fehler: {response.status_code}")
+
+    ## alle Todos
+    st.write("Todos")
+    #http://127.0.0.1:8000/users/2/todos
+    response = requests.get(f"{BASE_URL}/users/{user_id}/todos")
+    #response.raise_for_status()
+    if requests.status_codes==200:
+       pass
+
+    ## st.table
+
+
 
 def main():
     if "logged_in" not in st.session_state:
