@@ -5,8 +5,8 @@ from model.enums import TodoState
 
 class TodoBase(BaseModel):
     task: str
-    description: str|None = None
-    deadline: date | None= None
+    description: str | None = None
+    deadline: date | None = None
     state: TodoState = TodoState.OPEN
 
 class TodoCreate(TodoBase):
@@ -17,7 +17,7 @@ class TodoRead(TodoBase):
     user_id: int
 
     model_config = ConfigDict(from_attributes=True) # NEU!!!
-
+#----------------------- User ------------------------------------------
 class UserBase(BaseModel):
     name: str
 
